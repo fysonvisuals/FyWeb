@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ImFysonYT | Profile</title>
+    <meta name="theme-color" content="#05070c">
+    <meta name="description" content="Welcome to my personal profile.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue: #76baff;
+            --white: #ffffff;
+        }
+
+        html {
+            min-height: 100%;
+            background: #05070c;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+            font-family: 'Inter', sans-serif;
+            color: var(--white);
+            background: #05070c;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND VIDEO */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at 50% 40%,
+                    #17283a 0%,
+                    #080c14 55%,
+                    #030408 100%
+                );
+        }
+
+        .background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Dark overlay */
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+
+            background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.22),
+                rgba(0, 0, 0, 0.12) 45%,
+                rgba(0, 0, 0, 0.40)
+            );
+        }
+
+        /* SNOW */
+
+        #snow-container {
+            position: fixed;
+            inset: 0;
+            z-index: 5;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -20px;
+            color: rgba(255, 255, 255, 0.85);
+            user-select: none;
+            pointer-events: none;
+            animation: snowfall linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translate3d(0, -10px, 0);
+            }
+
+            50% {
+                transform: translate3d(35px, 50vh, 0);
+            }
+
+            100% {
+                transform: translate3d(-25px, 110vh, 0);
+            }
+        }
+
+        /* MAIN LAYOUT */
+
+        .page {
+            position: relative;
+            z-index: 2;
+
+            min-height: 100vh;
+            min-height: 100svh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 28px 16px;
+        }
+
+        /* PROFILE CARD */
+
+        .profile-card {
+            position: relative;
+            width: 100%;
+            max-width: 390px;
+
+            padding: 32px 24px 26px;
+            text-align: center;
+
+            /* More transparent glass effect */
+background: rgba(10, 15, 25, 0.08);
+
+border: 1px solid rgba(220, 235, 255, 0.12);
+border-radius: 24px;
+
+backdrop-filter: blur(3px);
+-webkit-backdrop-filter: blur(3px);
+
+box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+
+          
+            /* No bottom blue glowing line */
+            overflow: hidden;
+
+            animation: card-appear 0.9s ease both;
+        }
+
+        @keyframes card-appear {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* PROFILE IMAGE */
+
+        .avatar-wrapper {
+            width: 112px;
+            height: 112px;
+            margin: 0 auto 18px;
+
+            padding: 3px;
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.9),
+                rgba(118, 186, 255, 0.75),
+                rgba(255, 255, 255, 0.15)
+            );
+
+            box-shadow: 0 0 24px rgba(65, 155, 255, 0.18);
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+            object-fit: cover;
+
+            border-radius: 50%;
+            border: 3px solid rgba(5, 10, 18, 0.8);
+        }
+
+        /* NAME */
+
+        .username {
+            font-size: clamp(25px, 6vw, 31px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+
+            color: #ffffff;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .verified {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-left: 5px;
+            font-size: 16px;
+            color: var(--blue);
+            vertical-align: middle;
+        }
+
+        .handle {
+            margin-top: 7px;
+
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* BIO */
+
+        .bio {
+            max-width: 290px;
+            margin: 19px auto 22px;
+
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 13px;
+            line-height: 1.8;
+            font-weight: 400;
+
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+        }
+
+        /* SOCIAL LINKS */
+
+        .socials {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .social-link {
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #ffffff;
+            font-size: 17px;
+            text-decoration: none;
+
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 14px;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-4px);
+
+            background: rgba(95, 165, 255, 0.18);
+            border-color: rgba(118, 186, 255, 0.65);
+
+            box-shadow: 0 6px 22px rgba(65, 155, 255, 0.12);
+        }
+
+        /* VIEW COUNTER */
+
+        .views {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            margin-top: 25px;
+
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .views i {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 12px;
+        }
+
+        /* MUSIC BUTTON */
+
+        .music-button {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 10;
+
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+            font-size: 17px;
+
+            background: rgba(15, 25, 40, 0.48);
+            border: 1px solid rgba(190, 220, 255, 0.28);
+            border-radius: 50%;
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            cursor: pointer;
+
+            transition:
+                background 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .music-button:hover {
+            background: rgba(75, 145, 230, 0.35);
+            transform: scale(1.06);
+        }
+
+        .music-button.playing i {
+            animation: music-spin 3s linear infinite;
+        }
+
+        @keyframes music-spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 480px) {
+            .page {
+                padding: 22px 16px;
+            }
+
+            .profile-card {
+                max-width: 350px;
+                padding: 28px 20px 24px;
+                border-radius: 22px;
+            }
+
+            .avatar-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+
+            .bio {
+                font-size: 12px;
+                margin-top: 17px;
+                margin-bottom: 20px;
+            }
+
+            .socials {
+                gap: 10px;
+            }
+
+            .social-link {
+                width: 41px;
+                height: 41px;
+            }
+
+            .music-button {
+                width: 42px;
+                height: 42px;
+                right: 14px;
+                bottom: 14px;
+            }
+        }
+
+        /* REDUCE ANIMATIONS IF REQUESTED BY DEVICE */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND VIDEO -->
+    <div class="background">
+        <video autoplay muted loop playsinline>
+            <source src="background.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- DARK OVERLAY -->
+    <div class="overlay"></div>
+
+    <!-- SNOW EFFECT -->
+    <div id="snow-container"></div>
+
+    <!-- MAIN PROFILE -->
+    <main class="page">
+
+        <section class="profile-card">
+
+            <!-- PROFILE IMAGE -->
+            <div class="avatar-wrapper">
+                <img
+                    src="profile.jpg"
+                    alt="Profile picture"
+                    class="avatar"
+                >
+            </div>
+
+            <!-- USERNAME -->
+            <h1 class="username">
+                ImFysonYT
+                <span class="verified" aria-label="Verified">
+                    <i class="fa-solid fa-circle-check"></i>
+                </span>
+            </h1>
+
+            <p class="handle">@imfysonyt</p>
+
+            <!-- BIO -->
+            <p class="bio">
+                A simple & professional creator.<br>
+              sparking kindness and improving everyday.
+            </p>
+
+            <!-- SOCIAL LINKS -->
+            <div class="socials">
+
+                <a
+                    class="social-link"
+                    href="https://youtube.com/@imfysonyt?si=K8Nf2wgkMSl7tqfY"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="YouTube"
+                >
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+                <a
+                    class="social-link"
+                    href="https://www.instagram.com/officialfyson?xtok=MWw4ejNyemh2eDNicA=="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                >
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a
+                    class="social-link"
+                    href="https://discord.com/users/1251240556965789751"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Discord"
+                >
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+
+                <a
+                    class="social-link"
+                    href="https://github.com/fysonvisuals"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                >
+                    <i class="fa-brands fa-github"></i>
+                </a>
+
+            </div>
+
+            <!-- VIEW COUNTER -->
+            <div class="views">
+                <i class="fa-regular fa-eye"></i>
+                <span>22 views</span>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- BACKGROUND MUSIC -->
+    <audio id="background-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <button
+        class="music-button"
+        id="music-button"
+        aria-label="Play background music"
+        title="Toggle music"
+    >
+        <i class="fa-solid fa-music"></i>
+    </button>
+
+  * {
+    cursor: url("cursor.png") 16 16, auto !important;
+}
+
+    <script>
+        // ==========================
+        // RANDOM FALLING SNOW
+        // ==========================
+
+        const snowContainer = document.getElementById("snow-container");
+
+        const isMobile = window.matchMedia("(max-width: 600px)").matches;
+
+        const snowflakeCount = isMobile ? 35 : 65;
+
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement("span");
+
+            snowflake.className = "snowflake";
+            snowflake.textContent = Math.random() > 0.5 ? "•" : "❄";
+
+            const size = Math.random() * 8 + 4;
+            const duration = Math.random() * 10 + 8;
+            const delay = Math.random() * -20;
+            const left = Math.random() * 100;
+            const opacity = Math.random() * 0.6 + 0.2;
+
+            snowflake.style.left = left + "%";
+            snowflake.style.fontSize = size + "px";
+            snowflake.style.opacity = opacity;
+            snowflake.style.animationDuration = duration + "s";
+            snowflake.style.animationDelay = delay + "s";
+
+            snowContainer.appendChild(snowflake);
+        }
+
+
+        // ==========================
+        // BACKGROUND MUSIC CONTROL
+        // ==========================
+
+        const music = document.getElementById("background-music");
+        const musicButton = document.getElementById("music-button");
+
+        let isPlaying = false;
+
+        musicButton.addEventListener("click", async () => {
+            if (!isPlaying) {
+                try {
+                    await music.play();
+
+                    isPlaying = true;
+                    musicButton.classList.add("playing");
+
+                    musicButton.innerHTML =
+                        '<i class="fa-solid fa-compact-disc"></i>';
+
+                    musicButton.setAttribute(
+                        "aria-label",
+                        "Pause background music"
+                    );
+
+                } catch (error) {
+                    console.log("Music could not be played:", error);
+                }
+
+            } else {
+                music.pause();
+
+                isPlaying = false;
+                musicButton.classList.remove("playing");
+
+                musicButton.innerHTML =
+                    '<i class="fa-solid fa-music"></i>';
+
+                musicButton.setAttribute(
+                    "aria-label",
+                    "Play background music"
+                );
+            }
+        });
+    </script>
+
+</body>
+</html>
